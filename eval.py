@@ -112,4 +112,4 @@ class EvaluateMMLU:
     
 data = load_dataset("./data/mmlu","all", split = "test")    
 evaluator = EvaluateMMLU()
-evaluator.evaluate_dataset(data.select(range(100)))
+evaluator.evaluate_dataset(data.shuffle().select(range(100)))
