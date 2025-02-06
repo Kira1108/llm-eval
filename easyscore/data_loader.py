@@ -16,5 +16,17 @@ def load_mmlu_pro():
     return dataset
 
 
+def split_answer(example):
+    reasoning, answer = example['answer'].split("####")
+    example['reasoning'] = reasoning.strip()
+    example['answer'] = float(answer.strip().replace(",",""))
+    example['subject'] = 'math'
+    return example
+
+def load_gsm8k():
+    dataset = load_dataset("gsm8k",'main', split = 'test')
+    return dataset.map(split_answer)
+
+
 
 
