@@ -5,6 +5,8 @@
 [Deep-eval](https://docs.confident-ai.com/docs/benchmarks-introduction)    
 [Prompt-bench](https://github.com/microsoft/promptbench)
 
+这些评估框架的问题在于，写死Prompt以及输出的解析方式，对于输出格式有变化的模型，比如长思考模型，适应性不是很好。
+
 由于各种benchmark数据集的格式不统一，需要进行不同的处理，所以`Lm-evaluation-harness`对不同的任务写了不同的处理类，不同的prompt。
 部分结果需要正则解析
 ```yaml
