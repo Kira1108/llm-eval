@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import List
+from llama_index.core.llms import CompletionResponse
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -10,7 +11,7 @@ class HuggingfaceLLM:
     model_name_or_path: str
     
     def __post_init__(self):
-        self.model = AutoModelForCausalLM.from_pretrained(self.model_name_or_path)
+        self.model = AutoModelForCausalLM.from_pretrained(self.model_name_or_path, device_map = 'auto')
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_or_path)
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         
@@ -33,7 +34,7 @@ class HuggingfaceLLM:
         ]
 
         response = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)[0]
-        return response
+        return CompletionResponse(text = response)
     
     def complete(self, text:str):
         messages = [
@@ -44,3 +45,9 @@ class HuggingfaceLLM:
     
     
     
+
+
+if __name__ == "__main__":
+    llm = HuggingfaceLLM("qwen-openo1")
+    res = llm.complete("What is the capital of France?")
+    print(res)

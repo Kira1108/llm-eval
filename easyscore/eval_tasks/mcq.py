@@ -20,7 +20,7 @@ Choices:
 {choices}
 """ 
     
-class MMLUTask:
+class MCQTask:
 
     def __init__(self, llm, data:Dataset = None):
         if not hasattr(llm, "complete"):
@@ -31,6 +31,11 @@ class MMLUTask:
         if data is None:
             data = load_dataset("mmlu", "all", split = "test")
             data = data.shuffle().select(range(100))
+            
+        assert isinstance(data, Dataset)
+        
+        for col in ['question', 'subject', 'choices', 'answer']:
+            assert col in data.features.keys() 
         
     def format_prompt(self, sample:dict):
         return MMLU_PROMPT.format(
@@ -53,7 +58,8 @@ class MMLUTask:
                 "response": res.text, 
                 "output": output, 
                 "ground_truth": ground_truth, 
-                "correct": correct}
+                "correct": correct
+                }
         except Exception as e:
             print("Error in evaluating the sample")
             print(e)
