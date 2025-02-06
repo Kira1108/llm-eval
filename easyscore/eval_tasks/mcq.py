@@ -36,6 +36,8 @@ class MCQTask:
         
         for col in ['question', 'subject', 'choices', 'answer']:
             assert col in data.features.keys() 
+            
+        self.data = data
         
     def format_prompt(self, sample:dict):
         return MMLU_PROMPT.format(
