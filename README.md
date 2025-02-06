@@ -54,3 +54,16 @@ small_dataset = pro.shuffle().select(range(10))
 task = MCQTask(llm = m, data = small_dataset)
 task.evaluate_dataset()
 ```
+
+
+```python
+from easyscore.eval_tasks import MCQTask,MathTask
+from llama_index.llms.ollama import Ollama
+from easyscore.data_loader import load_mmlu_pro,load_gsm8k
+
+math_dataset = load_gsm8k().shuffle().select(range(10))
+
+llm = Ollama("qwen2.5")
+task = MathTask(llm = llm, data = math_dataset)
+task.evaluate_dataset()
+```
