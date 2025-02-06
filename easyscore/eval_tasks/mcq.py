@@ -46,7 +46,7 @@ class MCQTask:
             choices="\n".join(f"{chr(65 + i)}. {choice}" for i, choice in enumerate(sample["choices"])),
         )
             
-    def evalute_single(self, sample) -> dict:
+    def evaluate_single(self, sample) -> dict:
         
         prompt = self.format_prompt(sample)
         
@@ -75,7 +75,7 @@ class MCQTask:
     def evaluate_dataset(self):
         results = []
         for sample in tqdm(self.data, desc="Evaluating:"):
-            result = self.evalute_single(sample)
+            result = self.evaluate_single(sample)
             results.append(result)
             
         json.dump(results, open(get_fname(), "w"), ensure_ascii=False, indent=4)

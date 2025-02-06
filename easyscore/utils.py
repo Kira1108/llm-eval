@@ -24,8 +24,18 @@ def find_json_blocks(input_string):
         try:
             json_dict = json.loads(block.strip())
             json_dicts.append(json_dict)
+            continue
         except json.JSONDecodeError:
-            print("Invalid JSON block found and skipped.")
+            pass
+            
+        try:
+            json_dict = eval(block.strip())
+            if not isinstance(json_dict, dict):
+                raise ValueError("Not a dictionary")
+            json_dicts.append(json_dict)
+        except Exception as e:
+            print("Json Decode Error...")
+
     return json_dicts
 
 

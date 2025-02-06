@@ -85,7 +85,7 @@ class MathTask:
         
         results = []
         for sample in tqdm(self.data, desc="Evaluating:"):
-            result = self.evalute_single(sample)
+            result = self.evaluate_single(sample)
             results.append(result)
             
         json.dump(results, open(get_fname(), "w"), ensure_ascii=False, indent=4)
