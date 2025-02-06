@@ -39,3 +39,18 @@ json code block
     "answer": "A" # single letter
 }
 ```
+
+
+**使用**
+```python
+from easyscore.eval_tasks import MCQTask
+from llama_index.llms.ollama import Ollama
+from easyscore.data_loader import load_mmlu_pro
+
+pro = load_mmlu_pro()
+m = Ollama("qwen2.5")
+
+small_dataset = pro.shuffle().select(range(10))
+task = MCQTask(llm = m, data = small_dataset)
+task.evaluate_dataset()
+```

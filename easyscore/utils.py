@@ -32,5 +32,5 @@ def find_json_blocks(input_string):
 
 def get_fname():
     fp = f"./runs/{datetime.now().strftime("%Y%m%d%H%M%S")}.json"
-    Path(fp).mkdir(parents=True, exist_ok=True)
+    Path(fp).parent.mkdir(parents=True, exist_ok=True)
     return fp
