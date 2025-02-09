@@ -2,8 +2,8 @@
 
 **开源的大模型Benchmark框架**    
 [Lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness/tree/main)    
-[Deep-eval](https://docs.confident-ai.com/docs/benchmarks-introduction)    
-[Prompt-bench](https://github.com/microsoft/promptbench)
+[Deep-eval](https://docs.confident-ai.com/docs/benchmarks-introduction)      
+[Prompt-bench](https://github.com/microsoft/promptbench)       
 [Tulu3 Eval](https://github.com/allenai/olmes)
 
 这些评估框架的问题在于，写死Prompt以及输出的解析方式，对于输出格式有变化的模型，比如长思考模型，适应性不是很好。
